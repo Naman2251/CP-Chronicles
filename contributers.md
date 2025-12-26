@@ -26,5 +26,6 @@
 | Lavay Garg              | lavaygarg              | IIIT Allahabad                  |
 | Abhishek Tripathi      | Astinel-prime           | IIIT Allahabd                                                    |
 | Ibrahim Raza Beg       | PHOX-9                  | IIIT Allahabd                                                    |
+| Siddhant Shekhar       | sshekhar563             | United University                                                |
 <!-- ADD ABOVE THIS -->
 <!-- example | Korvac | Betty | Reyansh College | -->
