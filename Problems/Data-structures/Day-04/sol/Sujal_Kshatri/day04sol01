@@ -1,0 +1,99 @@
+//submission link - https://codeforces.com/problemset/submission/1997/355802679
+
+#include <bits/stdc++.h>
+using namespace std;
+
+/*
+Approach:
+---------
+We need to restore a Regular Bracket Sequence (RBS) by replacing '_' characters
+such that the total cost is minimized.
+
+Key ideas:
+1. A valid RBS has exactly n/2 '(' and n/2 ')'.
+2. To minimize cost, we should close brackets as early as possible
+   (i.e., minimize the distance between matching '(' and ')').
+3. While filling '_':
+   - If balance is 0, we MUST place '(' to avoid invalid sequence.
+   - Otherwise, prefer placing ')' (to close early and reduce cost),
+     unless we still need to place '(' to reach n/2 opens.
+
+Steps:
+1. First pass:
+   - Replace '_' greedily while maintaining RBS validity and minimizing nesting.
+2. Second pass:
+   - Use a stack to match '(' with ')'
+   - Add (closing_index - opening_index) to total cost.
+*/
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int t;
+    cin >> t;
+
+    while (t--) {
+        int n;
+        cin >> n;
+        string s;
+        cin >> s;
+
+        int need_open = n / 2;   // total '(' required
+        int open_used = 0;       // '(' placed so far
+        int balance = 0;         // current balance
+
+        // First pass: decide '_' positions
+        for (int i = 0; i < n; i++) {
+            if (s[i] == '(') {
+                open_used++;
+                balance++;
+            } 
+            else if (s[i] == ')') {
+                balance--;
+            } 
+            else { // s[i] == '_'
+                // If balance is zero, we must place '('
+                if (open_used < need_open && balance == 0) {
+                    s[i] = '(';
+                    open_used++;
+                    balance++;
+                }
+                // Otherwise, prefer closing early to reduce cost
+                else if (open_used < need_open) {
+                    s[i] = ')';
+                    balance--;
+                }
+                // If all '(' are already used, must place ')'
+                else {
+                    s[i] = ')';
+                    balance--;
+                }
+            }
+        }
+
+        // Second pass: calculate total cost
+        long long cost = 0;
+        stack<int> st;
+
+        for (int i = 0; i < n; i++) {
+            if (s[i] == '(') {
+                st.push(i);
+            } else { // ')'
+                int open_pos = st.top();
+                st.pop();
+                cost += (i - open_pos);
+            }
+        }
+
+        cout << cost << "\n";
+    }
+
+    return 0;
+}
+
+/*
+Time Complexity:
+O(n)
+Overall Space: O(n)
+*/
