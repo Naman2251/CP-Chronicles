@@ -84,5 +84,6 @@
 | Krishna Sikheriya | Krishna200608 | IIIT Allahabad |
 | Sarthak Tewari | strongFingers2 | IIIT Allahabad |
 | Gayatri Duse | Gayatrii4506 | KKWIEER |
+| Anshdeep Singh | Anshdeep-Singh-9 | IIIT Allahabad |
 <!-- ADD ABOVE THIS -->
 <!-- example | Korvac | Betty | Reyansh College | -->
